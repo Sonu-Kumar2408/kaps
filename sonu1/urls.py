@@ -7,6 +7,6 @@ from . views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(" ",home),
-    path("category/",views.CategoryView.as_view(),name='category'),
+    path("catagory/",views.CatagoryView.as_view(),name='catagory'),
 
 ]

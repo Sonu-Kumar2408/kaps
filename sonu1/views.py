@@ -9,9 +9,9 @@ def home(request):
 
 
 class CatagoryView(View):
-    def get(self,request,val):
+    def get(self,*args,val):
         product = Product.objects.filter(catagory=val)
         title = Product.objects.filter(catagory=val).values('title')
-        return render(request,"sonu1/catagory.html")
+        return render(request,"sonu1/catagory.html",locals())
 
 

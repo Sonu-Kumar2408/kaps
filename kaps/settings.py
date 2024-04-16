@@ -55,7 +55,7 @@ ROOT_URLCONF = 'kaps.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates",BASE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

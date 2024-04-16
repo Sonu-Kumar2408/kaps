@@ -8,10 +8,10 @@ def home(request):
     return render(request,"sonu1/home.html")
 
 
-class CatagoryView(View):
-    def get(self,*args,val):
-        product = Product.objects.filter(catagory=val)
-        title = Product.objects.filter(catagory=val).values('title')
-        return render(request,"sonu1/catagory.html",locals())
+class CategoryView(View):
+    def get(self,request,val):
+        # product=Product.objects.filter(category=val)
+        # title=Product.objects.filter(category=val).values('title')
+        return render(request,"sonu1/category.html",locals)
 
 

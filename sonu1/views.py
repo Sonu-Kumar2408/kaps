@@ -4,7 +4,7 @@ from urllib import request
 from django.views import View
 from . models import Product
 from django.db.models import Count
-from . forms import RegistrationForm
+from . forms import RegistrationForm,CustomerProfileForm
 from django.contrib import messages
 # Create your views here.
 def home(request):
@@ -15,6 +15,7 @@ def about(request):
 
 def contact(request):
     return render(request,"sonu1/contact.html")
+
 
 class CategoryView(View):
     def get(self,request,val):
@@ -38,12 +39,18 @@ class RegistrationView(View):
         form= RegistrationForm()
         return render(request,'sonu1/registration.html',locals())
     def post(self,request):
-        form=RegistrationForm(request.POST)
+        form =  RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,"congratulation! User registered")
+            messages.success(request,"Congratulation! User registered")
         else:
             messages.warning(request,"Invalid Input Data")
         return render(request,"sonu1/registration.html",locals())
 
 
+class ProfileView(View):
+    def get(self,request):
+        form=CustomerProfileForm()
+        return render(request,"sonu1/profile.html",locals())
+    def post(self,request):
+        return render(request,"sonu1/profile.html",locals())

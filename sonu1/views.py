@@ -6,6 +6,7 @@ from . models import Product
 from django.db.models import Count
 from . forms import RegistrationForm,CustomerProfileForm
 from django.contrib import messages
+from django.db.models import Count
 # Create your views here.
 def home(request):
     return render(request,"sonu1/home.html")
@@ -20,7 +21,7 @@ def contact(request):
 class CategoryView(View):
     def get(self,request,val):
         product = Product.objects.filter(category=val)
-        title = Product.objects.filter(category=val).values('title')
+        title = Product.objects.filter(category=val).values('title').annotate(total=Count('title'))
         return render(request,"sonu1/category.html",locals())
     
 class CategoryTitle(View):

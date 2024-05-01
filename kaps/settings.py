@@ -119,8 +119,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-LOGIN_REDIRECT_URL = '/profile/'
 MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
+LOGIN_REDIRECT_URL = '/profile/'
+
 
 
 # Default primary key field type

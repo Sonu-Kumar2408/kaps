@@ -16,7 +16,7 @@ urlpatterns = [
     path('contact/',views.contact,name="contact"),
     path("category/<slug:val>",views.CategoryView.as_view(),name="category"),
     path("category-title/<val>",views.CategoryTitle.as_view(),name="category-title"),
-    path("product-detail/<int:pk>",views.ProductDetail.as_view(),name="product"),
+    path("product-details/<int:pk>",views.ProductDetail.as_view(),name="product-details"),
     path("profile/",views.ProfileView.as_view(),name="profile"),
     path("registration/",views.RegistrationView.as_view(),name="registration"),
     path("login/", LoginView.as_view(template_name='sonu1/login.html'),  name='login'),

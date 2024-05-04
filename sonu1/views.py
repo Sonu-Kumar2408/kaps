@@ -21,7 +21,7 @@ def contact(request):
 class CategoryView(View):
     def get(self,request,val):
         product = Product.objects.filter(category=val)
-        title = Product.objects.filter(category=val).values('title').annotate(total=Count('title'))
+        title = Product.objects.filter(category=val).values('title')
         return render(request,"sonu1/category.html",locals())
     
 class CategoryTitle(View):
@@ -33,7 +33,7 @@ class CategoryTitle(View):
 class ProductDetail(View):
     def get(self,request,pk):
         product = Product.objects.get(pk=pk)
-        return render(request,"sonu1/productdetail.html",locals())
+        return render(request,"sonu1/productdetails.html",locals())
 
 class RegistrationView(View):
     def get(self,request):

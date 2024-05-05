@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from urllib import request
 from django.views import View
-from . models import Product
+from .models import Product
+from .models import Customer
 from django.db.models import Count
-from . forms import RegistrationForm,CustomerProfileForm
+from .forms import RegistrationForm,CustomerProfileForm
 from django.contrib import messages
 from django.db.models import Count
 # Create your views here.
@@ -37,7 +38,7 @@ class ProductDetail(View):
 
 class RegistrationView(View):
     def get(self,request):
-        form= RegistrationForm()
+        form = RegistrationForm()
         return render(request,'sonu1/registration.html',locals())
     def post(self,request):
         form =  RegistrationForm(request.POST)
@@ -51,7 +52,26 @@ class RegistrationView(View):
 
 class ProfileView(View):
     def get(self,request):
-        form=CustomerProfileForm()
+        form = CustomerProfileForm()
         return render(request,"sonu1/profile.html",locals())
     def post(self,request):
+        form = CustomerProfileForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            name = form.cleaned_data['name']
+            locality = form.cleaned_data['locality']
+            city = form.cleaned_data['city']
+            mobile = form.cleaned_data['mobile']
+            state = form.cleaned_data['state']
+            zipcode = form.cleaned_data['zipcode']
+
+            reg = Customer(user=user,name=name,locality=locality,city=city,
+            mobile=mobile,state=state,zipcode=zipcode)
+            reg.save()
+            messages.success(request,"Congratulation! Profile saved successfully")
+        else:
+            messages.warning(request,"Invalid Input Date")
         return render(request,"sonu1/profile.html",locals())
+    
+
+    #02:46:50

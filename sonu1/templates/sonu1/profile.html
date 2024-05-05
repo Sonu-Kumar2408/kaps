@@ -1,22 +1,59 @@
 {% extends 'sonu1/index.html' %}
-
 {% load static %}
+
 {% block title %}
-  profile
+  Profile
 {% endblock %}
 
 {% block main %}
-  <div class="container mt-5">
-    <h2 class="text-center">Profile</h2>
-    <br />
-    <div class="row container">
-      <p class="fs-4 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa consequuntur dolorem odio magni perspiciatis minus, consectetur nam iste delectus provident autem assumenda perferendis illo ex optio ullam quasi expedita! Repudiandae?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa consequuntur dolorem odio magni perspiciatis minus, consectetur nam iste delectus provident autem assumenda perferendis illo ex optio ullam quasi expedita! Repudiandae?</p>
+<div class="container my-5">
+    <div class="row my-3">
+        <h3>Welcome <span class="text-capitalize">{{ request.user.username }}</span></h3>
+        <div class="col-sm-2 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid">
+                    <a href="{% url 'profile' %}" class="btn btn-primary">Profile</a>
+                </li>
+                <!-- Uncomment when address page is ready -->
+                <!-- <li class="d-grid">
+                    <a href="{% url 'address' %}" class="btn">Address</a>
+                </li> -->
+            </ul>
+        </div>
+
+        <div class="col-sm-8 offset-sm-2 shadow p-5">
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="mb-3">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}
+                        <small class="text-danger">{{ field.errors|striptags }}</small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="col-12 mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger mt-3">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            </form>
+        </div>
     </div>
-    <br /><br />
-    <h2 class="text-center">Mission</h2>
-    <br />
-    <dir class="row container">
-      <p class="fs-4 text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam necessitatibus magnam officia quisquam. Hic facere officia, itaque, quasi harum veniam quibusdam doloribus suscipit ratione laboriosam numquam eligendi, sequi quia sint.Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa consequuntur dolorem odio magni perspiciatis minus, consectetur nam iste delectus provident autem assumenda perferendis illo ex optio ullam quasi expedita! Repudiandae?</p>
-    </dir>
-  </div>
-{% endblock %}
+</div>
+{% endblock %} 
+
+

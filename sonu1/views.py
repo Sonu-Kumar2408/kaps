@@ -74,4 +74,3 @@ class ProfileView(View):
         return render(request,"sonu1/profile.html",locals())
     
 
-    #02:46:50

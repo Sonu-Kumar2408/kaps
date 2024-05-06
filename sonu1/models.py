@@ -76,5 +76,5 @@ class Customer(models.Model):
         mobile=models.IntegerField(default=0)
         zipcode=models.IntegerField()
         state = models.CharField(choices=STATE_CHOICES,max_length=100)
-        def _str_(self):
+        def __str__(self):
             return self.name

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from urllib import request
 from django.views import View
 from .models import Product
-from .models import Customer
+from .models import Customer,Cart
 from django.db.models import Count
 from .forms import RegistrationForm,CustomerProfileForm
 from django.contrib import messages
@@ -72,5 +72,48 @@ class ProfileView(View):
         else:
             messages.warning(request,"Invalid Input Date")
         return render(request,"sonu1/profile.html",locals())
-    
+
+
+
+
+class UpdateAddress(View):
+    def get(self,request,pk):
+        add= Customer.objects.get(pk=pk)
+        form=CustomerProfileForm(instance=add)
+        return render(request,"sonu1/updateaddress.html",locals())
+    def post(self,request,pk):
+        form=CustomerProfileForm(request.POST)
+        if form.is_valid():
+            add = Customer.objects.get(pk=pk)
+            add.name = form.cleaned_data['name']
+            add.locality = form.cleaned_data['locality']
+            add.city = form.cleaned_data['city']
+            add.mobile = form.cleaned_data['mobile']
+            add.state = form.cleaned_data['state']
+            add.zipcode = form.cleaned_data['zipcode']
+            add.save()
+            messages.success(request,"Congratulations! Profile Update successfully")
+        else:
+            messages.warning(request,"Invalid Input Data")
+        return redirect("address")
+
+
+def address(request):
+    add = Customer.objects.filter(user=request.user)
+    return render(request,"sonu1/address.html",locals())
+
+
+
+def add_to_cart(request):
+    user = request.user
+    product_id = request.GET.get('prod_id')
+    product = Product.objects.get(id=product_id)
+    Cart(user=user,product=product).save()
+    return redirect("cart/")
+
+def show_cart(request):
+    user = request.user
+    cart = Cart.objects.filter(user=user)
+    return render(request, 'sonu1/addtocart.html',locals())
+
 

@@ -1,0 +1,47 @@
+{% extends 'sonu1/index.html' %}
+
+{% load static %}
+{% block title %}
+  Address
+{% endblock %}
+
+{% block main %}
+  <div class="container my-5">
+    <div class="row">
+        <h3>Welcome <span class="text-capitalize">{{ request.user.username }}</span></h3>
+        <div class="col-sm-2 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid">
+                    <a href="{% url 'profile' %}" class="btn btn-primary">Profile</a>
+                </li>
+                <br>
+                <!-- Uncomment when address page is ready -->
+                <li class="d-grid">
+                    <a href="{% url 'address' %}" class="btn btn-primary">Address</a>
+                </li>
+            </ul>
+        </div>
+      <div class="col-sm-8 offset-sm-1">
+        <div class="row">
+          {% for ad in add %}
+            <div class="col-sm-6">
+              <div class="card m-2">
+                <div class="card-body">
+                  <h3>Address {{ forloop.counter }}</h3>
+                  <p>Name: {{ ad.name }}</p>
+                  <p>Locality: {{ ad.locality }}</p>
+                  <p>City: {{ ad.city }}</p>
+                  <p>Mobile: {{ ad.mobile }}</p>
+                  <p>pincode: {{ ad.zipcode }}</p>
+                  <p>State: {{ ad.state }}</p>
+                  <p class="text-center">
+                  </p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

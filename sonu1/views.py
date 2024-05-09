@@ -74,7 +74,9 @@ class ProfileView(View):
         return render(request,"sonu1/profile.html",locals())
 
 
-
+def address(request):
+    add = Customer.objects.filter(user=request.user)
+    return render(request,"sonu1/address.html",locals())
 
 class UpdateAddress(View):
     def get(self,request,pk):
@@ -97,23 +99,21 @@ class UpdateAddress(View):
             messages.warning(request,"Invalid Input Data")
         return redirect("address")
 
-
-def address(request):
-    add = Customer.objects.filter(user=request.user)
-    return render(request,"sonu1/address.html",locals())
-
-
-
 def add_to_cart(request):
     user = request.user
     product_id = request.GET.get('prod_id')
     product = Product.objects.get(id=product_id)
     Cart(user=user,product=product).save()
-    return redirect("cart/")
+    return redirect("/cart")
 
 def show_cart(request):
     user = request.user
     cart = Cart.objects.filter(user=user)
-    return render(request, 'sonu1/addtocart.html',locals())
+    amount=0
+    for p in cart:
+        value = p.quantity * p.product.discounted_price
+        amount = amount + value
+    totalamount = amount + 40
+    return render(request,'sonu1/addtocart.html',locals())
 
 

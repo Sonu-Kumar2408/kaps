@@ -69,22 +69,23 @@ class Product(models.Model):
     
 
 class Customer(models.Model):
-        user=models.ForeignKey(User,on_delete=models.CASCADE)
-        name=models.CharField(max_length=100)
-        locality=models.CharField(max_length=100)
-        city=models.CharField(max_length=100)
-        mobile=models.IntegerField(default=0)
-        zipcode=models.IntegerField()
-        state = models.CharField(choices=STATE_CHOICES,max_length=100)
-        def __str__(self):
-            return self.name
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    name=models.CharField(max_length=100)
+    locality=models.CharField(max_length=100)
+    city=models.CharField(max_length=100)
+    mobile=models.IntegerField(default=0)
+    zipcode=models.IntegerField()
+    state = models.CharField(choices=STATE_CHOICES,max_length=100)
+    def __str__(self):
+        return self.name
         
 
-class Cart(models.Model):
-     user = models.ForeignKey(User,on_delete=models.CASCADE)
-     product = models.ForeignKey(Product,on_delete=models.CASCADE)
-     quantity = models.PositiveIntegerField(default=1)
 
-     @property
-     def total_cost(self):
-          return self.quantity * self.product.discounted_price
+class Cart(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.discounted_price

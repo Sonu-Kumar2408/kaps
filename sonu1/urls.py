@@ -19,10 +19,12 @@ urlpatterns = [
     path("product-details/<int:pk>",views.ProductDetail.as_view(),name="product-details"),
     path("profile/",views.ProfileView.as_view(),name="profile"),
     path("address/",views.address,name="address"),
+    path("updateAddress/<int:pk>",views.UpdateAddress.as_view(),name="updateAddress"),
     path("registration/",views.RegistrationView.as_view(),name="registration"),
     path("login/", LoginView.as_view(template_name='sonu1/login.html'),  name='login'),
-    path("add-to-cart/",views.add_to_cart,name="add-to-cart"),
-    path("cart/",views.show_cart,name="showcart"),
+    path('cart/',views.show_cart,name='showcart'),
+    path('add-to-cart/',views.add_to_cart,name='add_to_cart'),
+    path('checkout/',views.show_cart,name='checkout'),
    
    
    

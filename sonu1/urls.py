@@ -11,7 +11,7 @@ from .views import ProfileView
 
 
 urlpatterns = [
-    path('',views.home),
+    path('',views.home,),
     path('about/',views.about,name="about"),
     path('contact/',views.contact,name="contact"),
     path("category/<slug:val>",views.CategoryView.as_view(),name="category"),
@@ -25,7 +25,9 @@ urlpatterns = [
     path('cart/',views.show_cart,name='showcart'),
     path('add-to-cart/',views.add_to_cart,name='add_to_cart'),
     path('checkout/',views.show_cart,name='checkout'),
-   
+    path('pluscart/',views.plus_cart),
+    # path('minuscart/',views.minus_cart), 
+    # path('removecart/',views.remove_cart), 
    
    
     path("passwordchange/",auth_view.PasswordChangeView.as_view(template_name='sonu1/changepassword.html',

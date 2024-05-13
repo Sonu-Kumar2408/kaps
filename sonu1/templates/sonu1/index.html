@@ -96,7 +96,7 @@
             </ul>
           </li>
           <li class="nav-item mx-2">
-            <a href="#" class="nav-link text-white">Cart</a>
+            <a href="{% url 'showcart' %}" class="nav-link text-white">Cart</a>
           </li>
           <li class="nav-item mx-2">
             <a href="#" class="nav-link text-white">Wishlist</a>
@@ -112,22 +112,17 @@
       </div>
     </nav>
     {% block banner %}{% endblock banner %}
+  
     {% block information %}{% endblock information %}
 
     {% block main %}{% endblock %}
 
+    {% block footer %}{% endblock %}
+
     
 
 
-    {% comment %} <footer class="bg-dark text-white mt-5 py-1 fixed-bottom">
-  
-      <div class="row mt-3 ">
-        <div class="col text-center ">
-            <p>&copy; Developed By: Sonu Kumar | All Rights Reserved</p>
-        </div>
-      </div>
     
-    </footer> {% endcomment %}
     
     
 
@@ -140,8 +135,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <script script="{% static 'sonu1/js/owl.carousel.min.js' %}"></script>
-    <script script="{% static 'sonu1/js/all.min.js' %}"></script>
-    <script script="{% static 'sonu1/js/main.js' %}"></script>
+    <script src="{% static 'sonu1/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'sonu1/js/all.min.js' %}"></script>
+    <script src="{% static 'sonu1/js/myscript.js' %}"></script>
   </body>
 </html>

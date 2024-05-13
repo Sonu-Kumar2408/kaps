@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from urllib import request
 from django.views import View
 from .models import Product
@@ -7,7 +7,7 @@ from .models import Customer,Cart
 from django.db.models import Count
 from .forms import RegistrationForm,CustomerProfileForm
 from django.contrib import messages
-from django.db.models import Count
+from django.db.models import Count,Q
 # Create your views here.
 def home(request):
     return render(request,"sonu1/home.html")
@@ -115,5 +115,30 @@ def show_cart(request):
         amount = amount + value
     totalamount = amount + 40
     return render(request,'sonu1/addtocart.html',locals())
+
+
+def plus_cart(request):
+    if request.method == "GET":
+        prod_id=request.GET['prod_id']
+        c = Cart.objects.get(Q(product=prod_id) & Q(user=request.user))
+        c.quantity+=1
+        c.save()
+        user = request.user
+        cart = Cart.objects.filter(user=user)
+        amount = 0
+        for c in cart:
+            value = c.quantity * c.product.discounted_price
+            amount = amount + value
+        totalamount = amount + 40
+        data = {
+            'quantity':c.quantity,
+            'amount':amount,
+            'totalamount':totalamount
+        }
+        return JsonResponse(data)
+    
+
+
+    
 
 

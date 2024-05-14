@@ -22,7 +22,7 @@
             </ul>
         </div>
 
-        {% comment %} <div class="col-sm-8 offset-sm-1">
+        <div class="col-sm-8 offset-sm-1">
           <div class="row">
               {% for ad in add %}
               <div class="col-sm-6">
@@ -30,18 +30,21 @@
                     <div class="card-body">
                       <h3>Address {{ forloop.counter }}</h3>
                       <p>Name: {{ ad.name }}</p>
-                      <p>Locality: {{ ad.Locality }}</p>
-                      <p>Mobile: {{ ad.Mobile }}</p>
+                      <p>Locality: {{ ad.locality }}</p>
+                      <p>Mobile: {{ ad.mobile }}</p>
                       <p>City: {{ ad.city }}</p>
                       <p>State: {{ ad.state }}</p>
                       <p>pincode: {{ ad.zipcode }}</p>
+                      <p class="text-center">
+                        <a href="{% url 'updateAddress' pk=ad.id %}" type="button" class="btn btn-danger">Update</a>
+                      </p>
                     </div>
                   </div>
                 </div>
             {% endfor %}
         </div>
       </div>
-         {% endcomment %}
+        
     </div>
   </div>
 

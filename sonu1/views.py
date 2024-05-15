@@ -177,7 +177,16 @@ def remove_cart(request):
         return JsonResponse(data)
     
 
-
-    
+class Checkout(View):
+    def get(self,request):
+        user = request.user
+        add = Customer.objects.filter(user=user)
+        cart_items = Cart.objects.filter(user=user)
+        final_amount = 0
+        for a in cart_items:
+            value = a.quantity * a.product.discounted_price
+            final_amount = final_amount + value
+        totalamount = final_amount + 40
+        return render(request,'sonu1/checkout.html',locals())
 
 

@@ -32,83 +32,85 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li> 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Order Now</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a class="dropdown-item" href="{% url 'category' 'CP' %}">Cappuccino</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'category' 'LT' %}">Latte</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'category' 'FC' %}">Frappuccino</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'category' 'M' %}">Mocha</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'category' 'AM' %}">Americano</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'category' 'IC' %}">Irish Coffee</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'category' 'LB' %}">Long Black</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'category' 'DP' %}">Doppio</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'category' 'FW' %}">Flat White</a>
-                </li>     
-                <li>
-                  <a class="dropdown-item" href="{% url 'category' 'MT' %}">Macchiato</a>
-                </li>           
-              </ul>
-            </li>
-            
           </ul>
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
-        {% comment %} <div>
-          <button type="submit" class="btn btn-danger" style="margin-left: 30px;">Login</button>
-        </div> {% endcomment %}
+
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="{% static 'sonu1/images/banner/coffee_cup_icon_123494.ico' %}" width="35" height="35" alt="Settings Icon"></a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="{% url 'category' 'CP' %}">Cappuccino</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'category' 'LT' %}">Latte</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'category' 'FC' %}">Frappuccino</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'category' 'M' %}">Mocha</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'category' 'AM' %}">Americano</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'category' 'IC' %}">Irish Coffee</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'category' 'LB' %}">Long Black</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'category' 'DP' %}">Doppio</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'category' 'FW' %}">Flat White</a>
+              </li>     
+              <li>
+                <a class="dropdown-item" href="{% url 'category' 'MT' %}">Macchiato</a>
+              </li>           
+            </ul>
+          </li>
           <li class="nav-item mx-2">
             <a href="{% url 'showcart' %}" class="nav-link text-white"><img src="{% static 'sonu1/images/banner/cart1.ico' %}" width="35" height="35" alt="Settings Icon"></a>
           </li>
-          <li class="nav-item mx-2">
-            <a href="#" class="nav-link text-white">Wishlist</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a href="{% url 'login' %}" class="nav-link text-white">LogIn</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a href="{% url 'registration' %}" class="nav-link text-white"><img src="{% static 'sonu1/images/banner/user.ico' %}" width="35" height="35" alt="Settings Icon"></a>
-          </li>
           <li class="nav-item dropdown mx-2">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="profiledropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">User</a>
+            <a class="nav-link dropdown-toggle text-white" href="#" id="profiledropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="{% static 'sonu1/images/banner/avatardefault_92824.ico' %}" width="38" height="38" alt="Settings Icon"></a>
             <ul class="dropdown-menu" aria-labelledby="profiledropdown">
               <li>
                 <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
               </li>
+
               <li>
                 <a class="dropdown-item" href="#">Order</a>
               </li>
               <li>
                 <a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a>
               </li>
-              <li>
-                <a class="dropdown-item" href="#">Log Out</a>
-              </li>
+              
             </ul>
           </li>
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="profiledropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">SignIn</a>
+            <ul class="dropdown-menu" aria-labelledby="profiledropdown">
+              <li>
+                <a class="dropdown-item" href="{% url 'registration' %}" >SignIn</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'login' %}" >LogIn</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">LogOut</a>
+              </li>            
+            </ul>
+          </li>  
         </ul>
         </div>
       </div>

@@ -1,0 +1,6 @@
+.bg-image {
+    background-color: red;
+    background-size: cover; 
+    background-position: center; 
+    height: 100vh; 
+}

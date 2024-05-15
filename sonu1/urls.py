@@ -24,19 +24,22 @@ urlpatterns = [
     path("login/", LoginView.as_view(template_name='sonu1/login.html'),  name='login'),
     path('cart/',views.show_cart,name='showcart'),
     path('add-to-cart/',views.add_to_cart,name='add_to_cart'),
-    path('checkout/',views.show_cart,name='checkout'),
+    path('checkout/',views.Checkout.as_view(),name='checkout'),
     path('pluscart/',views.plus_cart),
     path('minuscart/',views.minus_cart), 
     path('removecart/',views.remove_cart), 
-   
-   
+    
+
+
     path("passwordchange/",auth_view.PasswordChangeView.as_view(template_name='sonu1/changepassword.html',
     form_class=MyPasswordChangeForm,success_url='sonu1/passwordchangedone'),name='passwordchange'),
+
     path("passwordchangedone/",auth_view.PasswordChangeDoneView.as_view
     (template_name='sonu1/passwordchangedone.html'),name='passwordchangedone'),
    
    
-    path('password-reset/',auth_view.PasswordResetView.as_view(template_name='sonu1/password_reset.html',
+    path('password-reset/',auth_view.PasswordResetView.as_view
+    (template_name='sonu1/password_reset.html',
     form_class=MyPasswordResetForm),name='password_reset'),
    
    
@@ -44,7 +47,8 @@ urlpatterns = [
     'sonu1/password_reset_done.html'),name='password_reset_done'),
     
     
-    path('password-reset-confirm/<uidb64>/<token>',auth_view.PasswordResetConfirmView.as_view(template_name=
+    path('password-reset-confirm/<uidb64>/<token>',
+    auth_view.PasswordResetConfirmView.as_view(template_name=
     'sonu1/password_reset_confirm.html',form_class=MySetPasswordForm),name='password_reset_confirm'),
    
     path('password-reset-complete/',auth_view.PasswordResetCompleteView.as_view(template_name=

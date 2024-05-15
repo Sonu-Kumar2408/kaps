@@ -89,3 +89,35 @@ class Cart(models.Model):
     @property
     def total_cost(self):
         return self.quantity * self.product.discounted_price
+
+
+
+STATE_CHOICES=(
+    ('Order Placed','Order Placed'),
+    ('Under Process','Under Process'),
+    ('Out for Delivery','Out for Delivery'),
+    ('Delivered','Delivered'),
+    ('Canceled','Canceled'),
+    ('Pending','Pending'),
+)  
+
+class Payment(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    amount = models.FloatField()
+    razorpay_order_id = models.CharField(max_length=100,blank=True,null=True)
+    razorpay_payment_status = models.CharField(max_length=100,blank=True,null=True)
+    razorpay_payment_id = models.CharField(max_length=100,blank=True,null=True)
+    paid = models.BooleanField(default=False)
+
+class OrderPlace(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    order_date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50,choices=STATE_CHOICES,default='pending')
+    payment = models.ForeignKey(Payment,on_delete=models.CASCADE,default="")
+    
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.discounted_price

@@ -167,6 +167,11 @@ def payment_done(request):
         OrderPlace(user=user,customer=customer,product=c.product,quantity=c.quantity,payment=payment).save()
         c.delete()
 
+
+def orders(request):
+    order_placed = OrderPlace.objects.filter(user=request.user)
+    return render(request,'sonu1/orders.html',locals())
+
 def plus_cart(request):
     if request.method == "GET":
         prod_id=request.GET['prod_id']

@@ -1,6 +1,7 @@
-.bg {
-    background-color: yellow;
+.row container{
+    background-color: rgb(11, 125, 218);
     background-size: cover; 
     background-position: center; 
     height: 100vh; 
 }
+
